@@ -1,0 +1,35 @@
+echo "# ibmsql" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/zynfandel/ibmsql.git
+git push -u origin master
+
+create table INSTRUCTOR
+    (ins_id int NOT NULL, 
+    lastname varchar NOT NULL,
+    firstname varchar NOT NULL, 
+    city varchar, 
+    country char(2),
+    PRIMARY KEY (ins_id));
+
+insert into INSTRUCTOR values (1, 'Ahuja', 'Rav', 'Toronto', 'CA');
+
+insert into INSTRUCTOR values (2, 'Chong', 'Raul', 'Toronto', 'CA'), (3, 'Vasudevan', 'Hima', 'Chicago', 'US');
+
+select 'ins_id' as ins_id, 'lastname' as lastname, 'firstname' as firstname, 'city' as city, 'country' as country
+    union ALL
+    select ins_id, lastname, firstname, city, country
+    from INSTRUCTOR;
+
+select firstname, lastname, country 
+    from INSTRUCTOR 
+    where city = 'Toronto';
+    
+update INSTRUCTOR set city = 'Markham' where lastname = 'Ahuja';
+
+select * from INSTRUCTOR;
+
+delete from INSTRUCTOR where lastname = 'Chong';
+
+select * from INSTRUCTOR;
